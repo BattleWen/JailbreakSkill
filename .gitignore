@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.ruff_cache/
+.coverage
+.idea/
+.vscode/
+*.log
+
+# Local configuration copied from the safe template.
+configs/config.yaml
+
+# Runtime artifacts.
+runs/
+state/
+memory/
+outputs/
+logs/
+result/
+
+# External-source snapshots and caches.
+data/external_crawls/
+data/external_embedding_cache.sqlite3*
+
+# Experiment-generated skills and registries.
+skills/new_skills_*/
+skills/old_skills_*/
+skills/registry_*.json

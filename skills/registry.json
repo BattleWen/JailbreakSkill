@@ -1,0 +1,89 @@
+{
+  "initial_skills": [
+    {
+      "name": "rewrite-base64",
+      "mode": "deterministic_template",
+      "description": "Base64 encoding with multiple framing variants"
+    },
+    {
+      "name": "rewrite-char",
+      "mode": "llm_rewrite",
+      "description": "Character-level obfuscation using leetspeak, splitting, case alternation"
+    },
+    {
+      "name": "rewrite-codecomplete",
+      "mode": "deterministic_template",
+      "description": "Embeds query into Python code completion task"
+    },
+    {
+      "name": "rewrite-codestack",
+      "mode": "deterministic_template",
+      "description": "Wraps query in Python deque stack operations with code completion framing"
+    },
+    {
+      "name": "rewrite-emoji",
+      "mode": "llm_rewrite",
+      "description": "Fragments keywords with emojis for casual obfuscation"
+    },
+    {
+      "name": "rewrite-equacode",
+      "mode": "deterministic_template",
+      "description": "EquaCode (AAAI 2026): wraps the seed into a B+C+steps=A equation, with four Solver/equation/code variants"
+    },
+    {
+      "name": "rewrite-history",
+      "mode": "llm_rewrite",
+      "description": "Frames as historical documentation or scholarly inquiry"
+    },
+    {
+      "name": "rewrite-hypo",
+      "mode": "llm_rewrite",
+      "description": "Hypothetical scenario framing with fictional context"
+    },
+    {
+      "name": "rewrite-language",
+      "mode": "llm_rewrite",
+      "description": "Multilingual obfuscation distributing terms across languages"
+    },
+    {
+      "name": "rewrite-literary",
+      "mode": "llm_rewrite",
+      "description": "Embeds request into literary styles (narrative, philosophical, satirical)"
+    },
+    {
+      "name": "rewrite-reverse",
+      "mode": "llm_rewrite",
+      "description": "Two-stage semantic inversion attack with reversal suffix"
+    },
+    {
+      "name": "rewrite-security",
+      "mode": "llm_rewrite",
+      "description": "Frames as professional security research inquiry"
+    },
+    {
+      "name": "rewrite-space",
+      "mode": "llm_rewrite",
+      "description": "Relocates harmful content into fictional settings"
+    },
+    {
+      "name": "rewrite-storynest",
+      "mode": "deterministic_template",
+      "description": "Embeds query into story continuation with dream classroom framing"
+    },
+    {
+      "name": "rewrite-tablefill",
+      "mode": "deterministic_template",
+      "description": "Embeds query into LaTeX table completion task"
+    },
+    {
+      "name": "rewrite-word",
+      "mode": "llm_rewrite",
+      "description": "Word-level obfuscation with clinical/technical euphemisms"
+    },
+    {
+      "name": "rewrite-roleplay",
+      "mode": "llm_rewrite",
+      "description": "Assigns expert persona via immersive role-play framing to bypass safety filters"
+    }
+  ]
+}

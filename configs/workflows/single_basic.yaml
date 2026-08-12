@@ -1,0 +1,19 @@
+name: single_basic
+description: Stage 1 workflow for one runtime-selected rewrite skill.
+initial_stage: search
+
+skill_groups:
+  search:
+    - rewrite-char
+  analyze:
+    - failure-analyzer
+  evolve:
+    - evolve-refine
+    - evolve-combine
+    - evolve-discover
+
+policy:
+  search_stage: search
+  analysis_stage: analyze
+  meta_stage: evolve
+  promotion_margin: 0.05

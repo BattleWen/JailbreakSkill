@@ -1,0 +1,35 @@
+name: basic
+description: Basic workflow for ASR-driven search, failure analysis, and meta-strategy updates.
+initial_stage: search
+
+skill_groups:
+  search:
+    - rewrite-base64
+    - rewrite-char
+    - rewrite-codecomplete
+    # - rewrite-codestack
+    - rewrite-emoji
+    - rewrite-equacode
+    - rewrite-history
+    - rewrite-hypo
+    - rewrite-language
+    - rewrite-literary
+    - rewrite-reverse
+    - rewrite-roleplay
+    - rewrite-security
+    - rewrite-space
+    - rewrite-storynest
+    - rewrite-tablefill
+    - rewrite-word
+  analyze:
+    - failure-analyzer
+  evolve:
+    - evolve-refine
+    - evolve-combine
+    - evolve-discover
+
+policy:
+  search_stage: search
+  analysis_stage: analyze
+  meta_stage: evolve
+  promotion_margin: 0.05

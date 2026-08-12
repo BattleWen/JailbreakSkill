@@ -1,0 +1,139 @@
+paths:
+  skills_dir: skills
+  workflows_dir: configs/workflows
+  runs_dir: runs
+  state_dir: state
+  memory_dir: memory
+
+budgets:
+  max_steps: 300
+  max_skill_calls: 300
+  max_environment_calls: 300
+
+planner:
+  ucb_exploration_weight: 0.45
+  llm:
+    provider: openai_compatible
+    base_url: "${PLANNER_BASE_URL}"
+    model: "${PLANNER_MODEL}"
+    api_key: "${PLANNER_API_KEY}"
+    timeout_seconds: 120
+    temperature: 0.2
+    max_tokens: 5120
+
+meta_skills:
+  backend: llm
+  llm:
+    provider: openai_compatible
+    enabled: true
+    inherit_planner_endpoint: true
+    timeout_seconds: 120
+    temperature: 0.3
+    max_tokens: 5120
+
+embeddings:
+  enabled: true
+  provider: openai
+  base_url: "${EMBEDDING_BASE_URL}"
+  model: "${EMBEDDING_MODEL}"
+  dimensions: 1536
+  api_key: "${EMBEDDING_API_KEY}"
+  timeout_seconds: 15
+  batch_size: 32
+  max_batch_tokens: 100000
+  max_retries: 2
+  retry_backoff_seconds: 1
+  text_dedup_threshold: 0.95
+  mechanism_dedup_threshold: 0.92
+  skill_duplicate_threshold: 0.90
+  cache_path: data/external_embedding_cache.sqlite3
+
+external_search:
+  bocha:
+    enabled: false
+    freshness: noLimit
+    summary: false
+
+skills:
+  backend: llm
+  initial_skills:
+    - rewrite-base64
+    - rewrite-char
+    - rewrite-codecomplete
+    - rewrite-equacode
+    - rewrite-emoji
+    - rewrite-history
+    - rewrite-hypo
+    - rewrite-language
+    - rewrite-literary
+    - rewrite-reverse
+    - rewrite-roleplay
+    - rewrite-security
+    - rewrite-space
+    - rewrite-storynest
+    - rewrite-tablefill
+    - rewrite-word
+  llm:
+    provider: openai_compatible
+    enabled: true
+    inherit_planner_endpoint: true
+    timeout_seconds: 30
+    temperature: 0.5
+    max_tokens: 2048
+
+evaluator:
+  guard_model:
+    enabled: true
+    base_url: "${GUARD_BASE_URL}"
+    model: "${GUARD_MODEL}"
+    api_key: "${GUARD_API_KEY}"
+    transport: openai_sdk
+    timeout_seconds: 60
+    error_retries: 4
+    retry_backoff_seconds: 2.0
+    temperature: 0.0
+    top_p: 1.0
+    max_tokens: 512
+
+risk_classifier:
+  enabled: true
+  base_url: "${RISK_CLASSIFIER_BASE_URL}"
+  model: "${RISK_CLASSIFIER_MODEL}"
+  api_key: "${RISK_CLASSIFIER_API_KEY}"
+  timeout_seconds: 30
+  temperature: 0.0
+  max_tokens: 100
+
+fidelity_filter:
+  llm:
+    enabled: false
+    inherit_planner_endpoint: true
+    timeout_seconds: 10
+    temperature: 0.0
+    max_tokens: 50
+
+environment:
+  backend: llm
+  target_profile:
+    model_name: "${TARGET_MODEL}"
+    mode: sandbox
+  llm:
+    provider: openai_compatible
+    enabled: true
+    base_url: "${TARGET_BASE_URL}"
+    model: "${TARGET_MODEL}"
+    api_key: "${TARGET_API_KEY}"
+    transport: openai_sdk
+    include_system_prompt: false
+    send_sampling_params: true
+    disable_thinking: false
+    target_transport_retries: 3
+    target_retry_backoff_seconds: 1.0
+    timeout_seconds: 180
+    temperature: 0.3
+    top_p: 0.9
+    max_tokens: 2048
+
+defaults:
+  workflow: basic
+  candidate_count: 1
