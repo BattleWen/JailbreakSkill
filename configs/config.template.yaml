@@ -19,7 +19,7 @@ planner:
     api_key: "${PLANNER_API_KEY}"
     timeout_seconds: 120
     temperature: 0.2
-    max_tokens: 5120
+    max_tokens: 8192
 
 meta_skills:
   backend: llm
@@ -29,7 +29,7 @@ meta_skills:
     inherit_planner_endpoint: true
     timeout_seconds: 120
     temperature: 0.3
-    max_tokens: 5120
+    max_tokens: 12288
 
 embeddings:
   enabled: true
