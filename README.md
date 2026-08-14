@@ -253,9 +253,3 @@ Pass with `--seed-prompt-file data/my_dataset.jsonl`.
 **`fidelity_filter`** — optional pre-target check that rejects semantically drifted rewrites. Disabled by default; set `fidelity_filter.llm.enabled: true` in `configs/config.yaml` to enable (costs one extra LLM call per candidate).
 
 **`max_tokens`** — for capable frontier models set `planner.llm.max_tokens: 8192` and `meta_skills.llm.max_tokens: 12288`. The template defaults are already set to these values.
-
-## Project license
-
-A project-level source-code license has not yet been selected. The licenses in
-`data/licenses/` apply only to their respective third-party datasets and do not
-grant rights to the SkillTeaming source code.
