@@ -1,8 +1,8 @@
-# SkillTeaming
+# JailbreakSkill
 
 ![Example of evolved skills](evolved_skills.png)
 
-SkillTeaming is a two-stage LLM red-teaming framework built around reusable
+JailbreakSkill is a two-stage LLM red-teaming framework built around reusable
 prompt-rewrite skills. Stage 1 searches a fixed skill library with shared UCB
 memory; Stage 2 analyzes failures and evolves category-specific skills. The
 repository also includes tools that extract new skills from external evidence.
@@ -69,8 +69,8 @@ Runtime outputs such as `runs/`, `memory/`, generated skills, reports, caches, a
 Requires Python 3.11 or newer. The recommended way is [uv](https://docs.astral.sh/uv/), which downloads the right Python version automatically.
 
 ```bash
-git clone https://github.com/BattleWen/SkillTeaming.git
-cd SkillTeaming
+git clone https://github.com/BattleWen/JailbreakSkill.git
+cd JailbreakSkill
 uv venv --python 3.11
 source .venv/bin/activate
 uv pip install -r requirements.txt
