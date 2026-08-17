@@ -7,6 +7,8 @@ prompt-rewrite skills. Stage 1 searches a fixed skill library with shared UCB
 memory; Stage 2 analyzes failures and evolves category-specific skills. The
 repository also includes tools that extract new skills from external evidence.
 
+![Motivation](motivation-1.png)
+
 ```
 Seed Prompts
      │
