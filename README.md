@@ -1,5 +1,7 @@
 # SkillTeaming
 
+![Example of evolved skills](evolved_skills.png)
+
 SkillTeaming is a two-stage LLM red-teaming framework built around reusable
 prompt-rewrite skills. Stage 1 searches a fixed skill library with shared UCB
 memory; Stage 2 analyzes failures and evolves category-specific skills. The
