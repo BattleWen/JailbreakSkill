@@ -22,7 +22,7 @@ repository also includes tools that extract new skills from external evidence.
 
 <p align="center">
   <a href="assets/motivation0817.pdf">
-    <img src="motivation-1.png" alt="JailbreakSkill motivation and framework overview" width="100%">
+    <img src="assets/motivation0817.png" alt="JailbreakSkill motivation and framework overview" width="100%">
   </a>
 </p>
 
@@ -75,6 +75,7 @@ Seed Prompts
 core/                        Runtime, planning, evaluation, memory, and skill loading
 skill_extraction/            External-evidence collection, skill generation, and evaluation
 skills/                      Stable built-in rewrite and evolution skills
+evolved_skill_examples/      Runnable evolved skill examples (`SKILL.md` + `scripts/run.py`)
 configs/
   config.template.yaml       Master configuration template
   workflows/basic.yaml       Default workflow (skill groups and stage routing)
