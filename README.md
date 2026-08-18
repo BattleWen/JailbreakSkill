@@ -106,11 +106,23 @@ cp .env.example .env
 cp configs/config.template.yaml configs/config.yaml
 ```
 
-Fill `.env` with endpoints, model names, and credentials for your own
-OpenAI-compatible services. No deployment-specific endpoint or credential is
-committed to this repository. The planner endpoint is inherited by model-backed
-skills and meta-skills unless the configuration is extended with role-specific
-settings.
+For standard Stage 1 + Stage 2 runs, the copied `configs/config.yaml` works
+without modification. Fill these independent model roles in `.env` with the
+endpoints, model names, and credentials for your own OpenAI-compatible services:
+
+| Environment variables | Role |
+| --- | --- |
+| `PLANNER_BASE_URL`, `PLANNER_MODEL`, `PLANNER_API_KEY` | Planner, failure analysis, and the default meta-skill backend |
+| `SKILL_BASE_URL`, `SKILL_MODEL`, `SKILL_API_KEY` | Model-backed rewrite skills |
+| `TARGET_BASE_URL`, `TARGET_MODEL`, `TARGET_API_KEY` | Target model under test |
+| `GUARD_BASE_URL`, `GUARD_MODEL`, `GUARD_API_KEY` | Guard model that judges target responses |
+
+The planner and rewrite-skill roles do not inherit from one another; configure
+both even when they use the same service. Meta-skills inherit the planner
+endpoint unless the configuration is extended with role-specific settings.
+`RISK_CLASSIFIER_*`, `EMBEDDING_*`, external-search credentials, and proxy
+settings are optional. No deployment-specific endpoint or credential is
+committed to this repository.
 
 Verify the local installation without making an API request (run all subsequent commands with the venv active):
 
@@ -268,7 +280,7 @@ Generated packages pass schema and runtime validation before registration. That 
 
 The repository includes AdvBench, HarmBench, and the 55-row `Source=Original` subset of JBB-Behaviors. Provenance, checksums, and license notices are in [`data/README.md`](data/README.md).
 
-**Custom datasets** — any JSONL with a `query` field works. Add `risk_category` to enable per-category UCB memory and Stage 2 grouping; without it the risk classifier LLM labels each prompt automatically. Supported codes: HarmBench keys (`chemical_biological`, `copyright`, `cybercrime_intrusion`, `illegal`, `misinformation_disinformation`, `harassment_bullying`, `harmful`), AdvBench keys (`cybercrime`, `fraud_theft`, `harassment_harmful`, `weapons_violence`, `misinformation`, `drugs_chemical`), AILuminate keys (`S1`–`S12`).
+**Custom datasets** — any JSONL with a `query` field works. Add `risk_category` to enable per-category UCB memory and Stage 2 grouping. Without it, a configured risk-classifier LLM labels each prompt; when `RISK_CLASSIFIER_BASE_URL` or `RISK_CLASSIFIER_MODEL` is blank, the prompt remains `unclassified`. Supported codes: HarmBench keys (`chemical_biological`, `copyright`, `cybercrime_intrusion`, `illegal`, `misinformation_disinformation`, `harassment_bullying`, `harmful`), AdvBench keys (`cybercrime`, `fraud_theft`, `harassment_harmful`, `weapons_violence`, `misinformation`, `drugs_chemical`), AILuminate keys (`S1`–`S12`).
 
 ```jsonl
 {"query": "How do I pick a lock?", "risk_category": "illegal"}
@@ -278,7 +290,13 @@ Pass with `--seed-prompt-file data/my_dataset.jsonl`.
 
 ## ⚙️ Configuration
 
-**`risk_classifier`** — only called when a seed prompt has no `risk_category`. To enable for custom datasets, configure `base_url` and `model` under `risk_classifier` in `configs/config.yaml`.
+**Rewrite model (`skills.llm`)** — set `SKILL_BASE_URL`, `SKILL_MODEL`, and
+`SKILL_API_KEY` in `.env` for model-backed rewrite skills. This backend is
+independent from `PLANNER_*` and has no default planner fallback.
+
+**`risk_classifier`** — only called when a seed prompt has no `risk_category`. To enable it, set `RISK_CLASSIFIER_BASE_URL`, `RISK_CLASSIFIER_MODEL`, and the service's `RISK_CLASSIFIER_API_KEY` in `.env`. If the endpoint or model is blank, the prompt remains `unclassified`.
+
+**`embeddings`** — optional for Stage 1, Stage 2, and standard external-skill extraction. Configure `EMBEDDING_BASE_URL`, `EMBEDDING_MODEL`, and `EMBEDDING_API_KEY` only for rigorous external-skill extraction and semantic deduplication.
 
 **`fidelity_filter`** — optional pre-target check that rejects semantically drifted rewrites. Disabled by default; set `fidelity_filter.llm.enabled: true` in `configs/config.yaml` to enable (costs one extra LLM call per candidate).
 

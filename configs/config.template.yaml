@@ -76,7 +76,9 @@ skills:
   llm:
     provider: openai_compatible
     enabled: true
-    inherit_planner_endpoint: true
+    base_url: "${SKILL_BASE_URL}"
+    model: "${SKILL_MODEL}"
+    api_key: "${SKILL_API_KEY}"
     timeout_seconds: 30
     temperature: 0.5
     max_tokens: 2048
