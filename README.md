@@ -1,13 +1,34 @@
-# JailbreakSkill
+<!-- # JailbreakSkill: Scaling Automated Red-Teaming with Reusable and Ever-Evolving Skills -->
 
-![Example of evolved skills](evolved_skills.png)
+<p align="center" style="margin-bottom: 0px;">
+  <img src="assets/github%20logo.png" alt="JailbreakSkill" height="140">
+</p>
+
+<p align="center" style="font-size: 18px; margin-top: 0;">
+  Scaling Automated Red-Teaming with Reusable and Ever-Evolving Skills
+</p>
+
+<p align="center">
+  <a href="https://github.com/BattleWen/JailbreakSkill"><img src="https://img.shields.io/badge/GitHub-JailbreakSkill-181717?logo=github" alt="GitHub"></a>
+  <a href="https://arxiv.org/abs/2608.16465"><img src="https://img.shields.io/badge/Paper-arXiv%3A2608.16465-b31b1b.svg" alt="Paper"></a>
+</p>
 
 JailbreakSkill is a two-stage LLM red-teaming framework built around reusable
 prompt-rewrite skills. Stage 1 searches a fixed skill library with shared UCB
 memory; Stage 2 analyzes failures and evolves category-specific skills. The
 repository also includes tools that extract new skills from external evidence.
 
-![Motivation](motivation-1.png)
+## 💡 Motivation
+
+<p align="center">
+  <a href="assets/motivation0817.pdf">
+    <img src="motivation-1.png" alt="JailbreakSkill motivation and framework overview" width="100%">
+  </a>
+</p>
+
+<p align="center"><sub>From external attack knowledge to reusable, diagnosable, and ever-evolving jailbreak skills. Click the figure to view the original PDF.</sub></p>
+
+## 🔄 Pipeline
 
 ```
 Seed Prompts
@@ -44,7 +65,11 @@ Seed Prompts
   ✓ Bypassed          ✓ Recovered
 ```
 
-## Repository layout
+## 🧬 Evolved skill examples
+
+![Examples of evolved skills](assets/evolved_skills.png)
+
+## 🗂️ Repository layout
 
 ```text
 core/                        Runtime, planning, evaluation, memory, and skill loading
@@ -64,7 +89,7 @@ Runtime outputs such as `runs/`, `memory/`, generated skills, reports, caches, a
 > Use it only on systems you own or are authorized to evaluate, with appropriate
 > access controls, monitoring, and human review.
 
-## Getting started
+## 🚀 Getting started
 
 ### Installation
 
@@ -173,7 +198,7 @@ python main.py --config configs/config.yaml --seed-prompt-file data/HarmBench.js
   --risk-filter chemical_biological --risk-limit 10 --stage1-only
 ```
 
-## Skills
+## 🧩 Skills
 
 ### Adding a custom skill
 
@@ -238,7 +263,7 @@ python -m skill_extraction.evaluate_skill_asr --help              # evaluate a b
 
 Generated packages pass schema and runtime validation before registration. That validation does not by itself establish paper fidelity or attack effectiveness; inspect the evidence and reports before using a generated skill.
 
-## Datasets
+## 📚 Datasets
 
 The repository includes AdvBench, HarmBench, and the 55-row `Source=Original` subset of JBB-Behaviors. Provenance, checksums, and license notices are in [`data/README.md`](data/README.md).
 
@@ -250,10 +275,26 @@ The repository includes AdvBench, HarmBench, and the 55-row `Source=Original` su
 
 Pass with `--seed-prompt-file data/my_dataset.jsonl`.
 
-## Configuration
+## ⚙️ Configuration
 
 **`risk_classifier`** — only called when a seed prompt has no `risk_category`. To enable for custom datasets, configure `base_url` and `model` under `risk_classifier` in `configs/config.yaml`.
 
 **`fidelity_filter`** — optional pre-target check that rejects semantically drifted rewrites. Disabled by default; set `fidelity_filter.llm.enabled: true` in `configs/config.yaml` to enable (costs one extra LLM call per candidate).
 
 **`max_tokens`** — for capable frontier models set `planner.llm.max_tokens: 8192` and `meta_skills.llm.max_tokens: 12288`. The template defaults are already set to these values.
+
+## 📄 Citation
+
+If you find JailbreakSkill useful in your research, please cite:
+
+```bibtex
+@misc{wen2026jailbreakskillscalingautomatedredteaming,
+      title={JailbreakSkill: Scaling Automated Red-Teaming with Reusable and Ever-Evolving Skills},
+      author={Xiaoyu Wen and Jiajia Li and Zhida He and Peng Yu and Chenxu Wang and Han Qi and Ziyuan Zhou and Cheng Jin and Ying Wen and Xingcheng Xu and Shuyue Hu and Tianhang Zheng and Chaochao Lu and Qiaosheng Zhang},
+      year={2026},
+      eprint={2608.16465},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2608.16465},
+}
+```
