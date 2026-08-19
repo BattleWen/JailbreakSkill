@@ -67,7 +67,19 @@ Seed Prompts
 
 ## 🧬 Evolved skill examples
 
-![Examples of evolved skills](assets/evolved_skills.png)
+Runnable examples are grouped by their primary selection rationale:
+
+- `effectiveness/` contains examples selected based on positive evidence from either source-run Stage 2 recovery or held-out transfer evaluation without further adaptation. This label records the basis for selection and does not imply consistent effectiveness across models,
+datasets, or risk categories.
+- `novelty/` contains conceptually distinctive mechanisms retained for qualitative study; inclusion does not by itself imply strong attack effectiveness.
+
+Each example is packaged as a self-contained `SKILL.md` + `scripts/run.py` implementation.
+
+See the [per-skill catalog](evolved_skill_examples/README.md) for a concise introduction to every example.
+
+The figure below illustrates a selected subset of these mechanisms.
+
+![Selected evolved skill mechanisms](assets/evolved_skills.png)
 
 ## 🗂️ Repository layout
 
@@ -75,7 +87,9 @@ Seed Prompts
 core/                        Runtime, planning, evaluation, memory, and skill loading
 skill_extraction/            External-evidence collection, skill generation, and evaluation
 skills/                      Stable built-in rewrite and evolution skills
-evolved_skill_examples/      Runnable evolved skill examples (`SKILL.md` + `scripts/run.py`)
+evolved_skill_examples/      Runnable evolved skill examples
+  effectiveness/             Examples selected for positive empirical evidence
+  novelty/                   Examples selected for conceptual novelty
 configs/
   config.template.yaml       Master configuration template
   workflows/basic.yaml       Default workflow (skill groups and stage routing)
