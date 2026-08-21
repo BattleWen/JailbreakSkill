@@ -18,6 +18,11 @@ prompt-rewrite skills. Stage 1 searches a fixed skill library with shared UCB
 memory; Stage 2 analyzes failures and evolves category-specific skills. The
 repository also includes tools that extract new skills from external evidence.
 
+> [!WARNING]
+> This repository contains adversarial prompts and red-teaming transformations.
+> Use it only on systems you own or are authorized to evaluate, with appropriate
+> access controls, monitoring, and human review.
+
 ## 💡 Motivation
 
 <p align="center">
@@ -98,11 +103,6 @@ main.py                      Two-stage command-line entry point
 ```
 
 Runtime outputs such as `runs/`, `memory/`, generated skills, reports, caches, and local configuration are intentionally ignored.
-
-> [!WARNING]
-> This repository contains adversarial prompts and red-teaming transformations.
-> Use it only on systems you own or are authorized to evaluate, with appropriate
-> access controls, monitoring, and human review.
 
 ## 🚀 Getting started
 
@@ -226,6 +226,12 @@ python main.py --config configs/config.yaml --seed-prompt-file data/HarmBench.js
 ```
 
 ## 🧩 Skills
+
+> [!TIP]
+> **Skill contributions are welcome!** If you have a reusable red-teaming skill,
+> please open a pull request with the implementation and a brief description.
+> I will regularly review contributions and curate accepted skills into the
+> repository through periodic updates.
 
 ### Adding a custom skill
 
