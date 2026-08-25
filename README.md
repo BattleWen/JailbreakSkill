@@ -23,6 +23,11 @@ repository also includes tools that extract new skills from external evidence.
 > Use it only on systems you own or are authorized to evaluate, with appropriate
 > access controls, monitoring, and human review.
 
+## 🔥 News
+
+- **2026-08-18** — 🎉 JailbreakSkill was released for the first time.
+- **In progress** — 🛠️ We are developing a new skill for prompt injection.
+
 ## 💡 Motivation
 
 <p align="center">
