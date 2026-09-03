@@ -27,6 +27,7 @@ repository also includes tools that extract new skills from external evidence.
 
 - **2026-08-18** — 🎉 JailbreakSkill was released for the first time.
 - **In progress** — 🛠️ We are developing a new skill for prompt injection.
+- **Planned** — 🧩 If time permits, we plan to extend the pipeline with an agent runtime and a ReAct-style interaction loop, eventually enabling red-teaming of agentic targets. This will require corresponding updates to the harness.
 
 ## 💡 Motivation
 
